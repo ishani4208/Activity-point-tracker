@@ -1,0 +1,104 @@
+/* Container: split screen */
+.app-container {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+/* Left panel */
+.left-panel {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+}
+
+/* Heading at top */
+.heading {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+/* Vendor/Student toggle buttons */
+.toggle-group {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.toggle-btn {
+  padding: 0.5rem 1.5rem;
+  border-radius: 8px;
+  background-color: blue; /* gray-200 */
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.toggle-btn.active {
+  background-color: #3b82f6; /* blue-500 */
+  color: white;
+}
+
+/* Center content vertically */
+.content-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* Input fields */
+.input {
+  display: block;
+  width: 200%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #d1d5db; /* gray-300 */
+  border-radius: 6px;
+}
+
+/* Buttons */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-green {
+  margin-top: 2.5rem;
+  background-color: #10b981; /* green-500 */
+  color: white;
+}
+
+.btn-blue {
+  background-color: #3b82f6; /* blue-500 */
+  color: white;
+}
+
+.btn-purple {
+  background-color: #8b5cf6; /* purple-500 */
+  color: white;
+}
+
+/* Right panel */
+.right-panel {
+  width: 35%;
+  display: flex;
+  align-items: flex-end;   /* Stick to bottom if you want */
+  justify-content: flex-end; /* Extreme right */
+  padding: 1rem;
+  background: none; /* No background */
+}
+
+.canteen-img {
+  max-width: 90%;
+  height: auto;
+  object-fit: contain;
+}
