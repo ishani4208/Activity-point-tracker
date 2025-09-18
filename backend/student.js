@@ -11,15 +11,18 @@ app.use(bodyParser.json());
 app.get("/order/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await pool.query("SELECT * FROM orders WHERE id = $1", [id]);
+    const result = await pool.query(
+      "SELECT id, student_name, phone_no, items, status FROM orders WHERE id = $1",
+      [id]
+    );
 
     if (result.rows.length === 0) {
       return res.status(404).json({ error: "Order not found" });
     }
 
-    res.json(result.rows[0]); // ✅ Always send JSON
+    res.json(result.rows[0]); // ✅ frontend expects {items, status}
   } catch (err) {
-    console.error(err.message);
+    console.error("❌ Error fetching order:", err.message);
     res.status(500).json({ error: "Server error" });
   }
 });
