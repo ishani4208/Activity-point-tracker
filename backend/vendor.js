@@ -231,7 +231,7 @@ app.post("/sms", async (req, res) => {
   const msg = req.body.Body?.trim().toUpperCase();
   const from = req.body.From;
 
-  if (msg === "CANCEL") {
+  if (msg === "DROP") {
     try {
       const result = await pool.query(
         `UPDATE orders SET status='cancelled' 
@@ -246,10 +246,10 @@ app.post("/sms", async (req, res) => {
       );
 
       if (result.rows.length > 0) {
-        await sendSMS(from, "❌ Your most recent order has been cancelled.");
+        await sendSMS(from, "❌ Your most recent order has been dropped.");
       }
     } catch (err) {
-      console.error("❌ SMS cancel error:", err.message);
+      console.error("❌ SMS drop error:", err.message);
     }
   }
 
