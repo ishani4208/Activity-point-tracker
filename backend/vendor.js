@@ -121,6 +121,23 @@ app.post("/vendor/login", async (req, res) => {
   }
 });
 
+// ---------------- VENDOR: Get Menu for their Canteen ----------------
+app.get("/menu", authMiddleware, async (req, res) => {
+  // The canteenId is extracted from the JWT token by the authMiddleware
+  const canteenId = req.user.canteenId;
+
+  try {
+    const result = await pool.query(
+      "SELECT id, name, price, is_available FROM menuitems WHERE canteen_id = $1 ORDER BY name ASC",
+      [canteenId]
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error("❌ Error fetching menu:", err.message);
+    res.status(500).json({ error: "Failed to fetch menu." });
+  }
+});
+
 // ---------------- VENDOR: Create Order ----------------
 app.post("/order", authMiddleware, async (req, res) => {
   const { studentName, phoneNo, items } = req.body;
